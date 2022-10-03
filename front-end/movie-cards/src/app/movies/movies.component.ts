@@ -17,10 +17,12 @@ export class MoviesComponent implements OnInit {
     this.getMovies();
   }
 
+  //get movie data from movie service
   getMovies(): void {
     this.movieService.getHttpMovies().subscribe(movies => this.movies = movies);
   }
 
+  //whenever a card is dragged/dropped, save the new order
   drop(event: CdkDragDrop<Movie[]>){
     moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
     this.movieService.saveMovies(this.movies);

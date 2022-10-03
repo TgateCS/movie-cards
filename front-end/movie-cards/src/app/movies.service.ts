@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Movie } from './movie';
 import {Observable, of} from 'rxjs';
-import MoviesJSON from '../app/film.json';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
@@ -9,21 +8,23 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class MovieService {
 
-  movies: Movie[] = JSON.parse(JSON.stringify(MoviesJSON));
+  movies: Movie[] = [];
   rootURL = "/api";
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<Movie[]> {
-    const movies = of(this.movies);
-    return movies;
+  ngOnInit(){
+    this.getHttpMovies().subscribe(movies => this.movies = movies);
   }
 
+  //get movies from the backend server
   getHttpMovies(): Observable<Movie[]>{
+    this.http.get<Movie[]>(this.rootURL+ '/movies').subscribe(response => console.log(response));
     return this.http.get<Movie[]>(this.rootURL + '/movies');
   }
 
+  //send the new list back to the server to be saved
   saveMovies(movies: Movie[]){
-    console.log(JSON.stringify(movies));
+    return this.http.post(this.rootURL + '/save', movies).subscribe(response => console.log(response));
   }
 }
