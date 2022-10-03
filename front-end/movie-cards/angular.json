@@ -71,6 +71,10 @@
               "browserTarget": "movie-cards:build:development"
             }
           },
+          "options": {
+            "browserTarget": "angular-nodejs-example:build",
+            "proxyConfig": "proxy.conf.json"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
