@@ -1,0 +1,11 @@
+<div cdkDropList class="movie-list" cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+    <div class="movie-card" *ngFor="let movie of movies" cdkDragLockAxis="x" cdkDrag>
+        <p>Title: {{movie.Title}}</p>
+        <p>Release Date: {{movie.Released}}</p>
+        <p>Rating: {{movie.Rated}}</p>
+        <p>Genre: {{movie.Genre}}</p>
+        <p>iMDB Rating: {{movie.imdbRating}}</p>
+            
+    </div>
+</div>
+
