@@ -7,10 +7,6 @@ const users = [];
 
 app.use(bodyParser.json());
 
-app.get('/api/users', (req, res) => {
-    res.json(users);
-});
-
 app.get('/', (req,res) =>{
     console.log('Everything is working!');
 });
